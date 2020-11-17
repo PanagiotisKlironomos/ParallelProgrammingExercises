@@ -43,8 +43,10 @@ IV. C(NxN) \* D(NxN) /\* multiplication of two-dimensional arrays with the follo
 For the act of multiplying two-dimensional arrays of Query IV, assume that the processors are organized 'virtually' in a ring topology and follow the following communication algorithm (given for N = p):
 
 1.Each processor will be responsible for calculating one line of the scoreboard (o &#39;0&#39; for the 1st, o &#39;1&#39; for the 2nd, etc.).
+
 2.Initially each processor will receive a row of table C (o &#39;0&#39; on the 1st, o &#39;1&#39; on the 2nd etc.) and a row of the table D (o &#39;0&#39; on the 1st, o &#39;1&#39; on the 2nd etc.) and will performs calculations that are useful for calculating the line item of the scoreboard for which it is responsible.
-    Then, in each step (p-1 steps) each processor will take the next line of table D from the 'next' in the processor ring and perform (maintaining the same line of table C that it had from the beginning - the lines of D that is, those that change / move only / cyclically between the processors) the corresponding calculations with the new line of D that will have received and so on.
+
+3.Then, in each step (p-1 steps) each processor will take the next line of table D from the 'next' in the processor ring and perform (maintaining the same line of table C that it had from the beginning - the lines of D that is, those that change / move only / cyclically between the processors) the corresponding calculations with the new line of D that will have received and so on.
     
 -----------------------------------------------------------------------------------------------------------------------
 [For all of the above, you should make good use of the collective communication (SBS) functions offered by MPI (MPI_Bcast (), MPI_Reduce (), MPI_Scatter (), MPI_Gather ()), as well as the basic functions MPI_Send (), MPI_Recv () communication where it can not be resolved in its entirety by collective communication alone - e.g. to question IV]
