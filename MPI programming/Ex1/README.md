@@ -20,3 +20,26 @@ _δi_ _= ((__x __i_ _–_ _x__ min__) / (__x __max_ _–_ _x__ min__)) \* 100_
 
 Προσπαθήστε επίσης να κάνετε το πρόγραμμά σας να δουλεύει (α) με menu επιλογών (π.χ. 1. Συνέχεια – 2. Εξοδος) και (β) επαναληπτικά (δηλαδή να εμφανίζει επαναληπτικά το παραπάνω menu μέχρι να επιλέξει ο χρήστης την επιλογή &#39;εξόδου&#39; από το πρόγραμμα).
 Λύση στο e1.c
+
+
+**Exercise 1**
+
+You are asked to create an MPI program (in C language and considering point-to-point communication), which, given (as input) of a vector X (length n elements xi | i = 0… n-1), to calculate in parallel in a 'p' processor environment and print the following (as output) to the screen:
+
+**(a)** the mean value of the elements of the vector X:
+
+m = (x 0 + x 1 + x 2 +… + x n -1_) / _ n
+
+**(b)** the scattering elements of the vector X:
+
+var = ((x__0 - m) 2 + (x__1 - m) 2 + (x__2 - m) 2 +… + (x__n-1 - m) 2) / n
+
+**(c)** a new vector Δ where each element δi will be equal to the percentage ratio of the corresponding element (xi) of the vector X to the maximum-minimum difference of the values ​​of the whole vector X:
+
+δi = ((x i - x min) / (x max - x min)) * 100
+
+Use only simple MPI_Send () / MPI_Recv () functions (do not use collective communication functions). The total required load should be evenly distributed among the 'p' processors in your parallel environment. Also, each processor should receive (hold) in its local memory only the input data it uses for local (own) calculations. The values ​​/ elements 'n', 'xi' should be given by the user and read respectively from the screen by one of the 'p' processors of your parallel environment (eg the processor '0' which for this reason we consider it as the 'central' processor of the parallel environment). The results of your program should also be collected at the end in this 'central' processor and presented to the user through it.
+
+Expand your code parameterically so that it works properly for any number of 'p' multiple processors. First consider that 'n' is an integer multiple of 'p'. Then try extending your implementation to make it work properly for any 'n' and 'p' value combinations.
+
+Also try to make your program work (a) with options menu (eg 1. Continue - 2. Exit) and (b) iteratively (ie display the above menu repeatedly until the user selects the 'exit' option from the program). Solution in e1.c
